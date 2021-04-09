@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+</body>
+</html>
+<script src="./shapes.js"></script>
+<script>
+
+
+
+    let canvas = document.createElement("canvas");
+        document.body.appendChild(canvas);
+        canvas.width  = 400;
+        canvas.height = 400;
+        // canvas.style.border = "1px solid green"
+
+    let ctx = canvas.getContext("2d");
+
+    let back = document.getElementById("canvas_back");
+    
+    
+
+
+    // let rectSize = 100;
+
+    // drawCircles([ { "x": 500, "y": 400 }, { "x": 200, "y": 200 }, { "x": canvas.width / 2, "y": canvas.height / 2 } ], 50);
+
+    // Shapes.drawLines(10);
+
+    // ctx.beginPath();
+    //     ctx.lineWidth = 5;
+
+    //     Shapes.drawCross(canvas.width / 2, canvas.height / 2, 100);
+    //     ctx.stroke();
+    // ctx.closePath();
+
+    // Shapes.addBackground();
+
+    // let [x, y] = Shapes.drawLines(5);
+
+    // Shapes.drawCircles([ [700, 700], [600, 600], [500, 500]]);
+    // Shapes.drawCrosses( [ [400, 400], [200, 200], [600, 600]]);
+
+    // Shapes.drawCircles([[x / 2, y / 2]], 10, x / 2 - 5 - 20);
+    
+    Shapes.drawBoard([
+        ['x', 'o', 'x'],
+        ['x', 'x', 'o'],
+        ['o', 'x', 0]
+    ]
+    )
+
+    
+
+
+
+
+</script>
