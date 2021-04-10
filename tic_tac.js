@@ -2,6 +2,14 @@ class TicTacToe
 {
     constructor(turn) 
     {
+        this.reset_boards();
+        this.initialTurn = turn;
+        this.turn = turn;
+        this.moving = false;
+    }
+
+    reset_boards()
+    {
         this.board = [
             [0, 0, 0],
             [0, 0, 0],
@@ -13,10 +21,46 @@ class TicTacToe
             [50, 50, 50],
             [50, 50, 50]
         ]
-
-        this.turn = turn;
-        this.moving = false;
     }
+
+    restart_game()
+    {
+        this.reset_boards();
+        this.moving = false;
+        this.initialTurn = this.initialTurn == "x" ? "o" : "x";
+        this.turn = this.initialTurn;
+
+        Shapes.clear();
+        Shapes.drawBoard(this.board);
+    }
+
+    handleWinner(move)
+    {
+        if (!move)
+            return;
+
+        let color, stroke_color;
+
+        if (move[0] == "x")
+        {
+            color = "rgb(47, 168, 237)";
+            stroke_color = "rgb(196, 213, 245)";
+        }
+        else 
+        {
+            color = "rgb(247, 47, 66)";
+            stroke_color = "rgb(250, 197, 203)";
+        }
+        
+        let P0 = move[1][0];
+        let P1 = move[1][1];   
+        
+        let anim = new LineAnimation(P0, P1, this.board, color, stroke_color, () => setTimeout(() => this.restart_game(), 500) );
+        this.moving = true;
+        anim.start(1);
+    };
+
+    onPlayerMoveEnd() {};
 
     move(x, y)
     {
@@ -38,13 +82,18 @@ class TicTacToe
 
             anim.onAnimationEnd = () => {
                 this.board[y][x] = this.turn;
-                this.optimisedBoard[y][x] = this.turn == "x" ? 0 : 1;
-                console.log(this.playerWon());
+                this.optimisedBoard[y][x] = this.turn == "x" ? AI.x : AI.o;
+
+                let won = this.playerWon();
+                if (won)
+                    return this.handleWinner(won);
+
                 Shapes.clear();
                 Shapes.drawBoard(this.board);
         
                 this.turn = this.turn == "x" ? "o" : "x";
                 this.moving = false;
+                this.onPlayerMoveEnd();
             }
 
             anim.animate(0.2,  (len, blur) => {
@@ -60,13 +109,16 @@ class TicTacToe
                 this.board[y][x] = this.turn;
                 this.optimisedBoard[y][x] = this.turn == "x" ? 0 : 1;
 
-                console.log(this.playerWon());
+                let won = this.playerWon();
+                if (won)
+                    return this.handleWinner(won);
 
                 Shapes.clear();
                 Shapes.drawBoard(this.board);
         
                 this.turn = this.turn == "x" ? "o" : "x";
                 this.moving = false;
+                this.onPlayerMoveEnd();
             }
 
             anim.animate(0.2,  (len, blur) => {
@@ -75,13 +127,6 @@ class TicTacToe
                 Shapes.drawCircles([[pos[1], pos[2]]], 5, pos[0] - Shapes.delta, "rgb(217, 48, 48)", blur, len);
             });
         }
-
-        // this.board[y][x] = this.turn;
-
-        // Shapes.clear();
-        // Shapes.drawBoard(this.board);
-
-        // this.turn = this.turn == "x" ? "o" : "x";
     };
 
 
@@ -100,6 +145,43 @@ class TicTacToe
 
     }
 
+    LeftDiagnal()
+    {
+        let P0 = this.getPosition(0, 0)
+        let P1 = this.getPosition(2, 2)
+
+        P0.shift();
+        P1.shift();
+
+        return [P0, P1]
+    };
+
+    RightDiagnal()
+    {
+        let P0 = this.getPosition(2, 0);
+        let P1 = this.getPosition(0, 2);
+
+        P0.shift(); P1.shift();
+        return [P0, P1];
+    }
+
+    Vertical(x)
+    {
+        let P0 = this.getPosition(x, 0);
+        let P1 = this.getPosition(x, 2);
+        P0.shift(); P1.shift();
+
+        return [P0, P1];
+    }
+
+    Horizontal(y)
+    {
+        let P0 = this.getPosition(0, y);
+        let P1 = this.getPosition(2, y);
+        P0.shift(); P1.shift();
+        return [P0, P1];        
+    }
+
     playerWon()
     {
         // Check Horizoontally
@@ -111,9 +193,9 @@ class TicTacToe
     
             switch (row_sum) {
                 case 0:
-                    return "x";
+                    return ["x", this.Horizontal(y)];
                 case 3:
-                    return "o";
+                    return ["o", this.Horizontal(y)];
             }
         }
     
@@ -127,9 +209,9 @@ class TicTacToe
             switch (col_sum)
             {
                 case 0:
-                    return "x";
+                    return ["x", this.Vertical(x)];
                 case 3:
-                    return  "o";
+                    return  ["o", this.Vertical(x)];
             }
         }
     
@@ -140,13 +222,14 @@ class TicTacToe
             {
                 d_sum_left += this.optimisedBoard[i][i];
             }    
+
     
             switch (d_sum_left)
             {
                 case 0:
-                    return "x";
+                    return ["x", this.LeftDiagnal()];
                 case 3:
-                    return  "o";
+                    return  ["o", this.LeftDiagnal()];
             }
     
         }
@@ -154,22 +237,21 @@ class TicTacToe
         // Right diagnal
         {
             let d_sum_right = 0;
-            for (let i=2; i >= 0; i--)
+            for (let i=2, j=0; i >= 0; i--, j++)
             {
-                d_sum_right += this.optimisedBoard[i][i];
+                d_sum_right += this.optimisedBoard[j][i];
             }    
-    
+
+
             switch (d_sum_right)
             {
                 case 0:
-                    return "x";
+                    return ["x", this.RightDiagnal()];
                 case 3:
-                    return  "o";
+                    return  ["o", this.RightDiagnal()];
             }
         }
+
         return null;
-    
     }
 };
-
-

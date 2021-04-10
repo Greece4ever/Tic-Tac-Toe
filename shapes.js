@@ -7,6 +7,7 @@ class Shapes
     static drawCross(x, y, length)  {};
     static addBackground() {};
     static drawBoard(board) {};
+    static drawLine(P0, P1, blur=10, color="red", stroke_color="white") {};
     static clear() { ctx.clearRect(0, 0, canvas.width, canvas.height); };
     static delta = 20;
 };
@@ -161,6 +162,20 @@ Shapes.drawBoard = function(board)
     Shapes.drawCrosses(cross, radius);
 };
 
+Shapes.drawLine = function(P0, P1, blur=10, color="red", stroke_color="white") {
+    ctx.beginPath();
+        ctx.shadowBlur = blur;
+        ctx.shadowColor = color;
+        ctx.fillStyle = color;
+        ctx.strokeStyle = stroke_color;
+        ctx.lineCap = "round";
+        ctx.lineWidth = 10;
+
+        ctx.moveTo(P0[0], P0[1]);
+        ctx.lineTo(P1[0], P1[1])
+        ctx.stroke();
+    ctx.closePath();
+}
 
 class CanvasAnimation
 {
@@ -216,3 +231,40 @@ class CanvasAnimation
     }
 };
 
+
+class LineAnimation {
+    constructor(P0, P1, board, color="red", stroke_color="white", onAnimationEnd) {
+        this.P0 = P0;
+        this.P1 = P1;
+
+        let dx = P1[0] - P0[0];
+        let dy = P1[1] - P0[1];
+        
+        let length = Math.sqrt(dx * dx + dy * dy);
+    
+        // normal vector
+        this.unitX = dx / length;
+        this.unitY = dy / length;
+
+        this.animation = new CanvasAnimation(length, 50);
+        this.color = color;
+        this.stroke_color = stroke_color;
+        this.board = board;
+
+        this.animation.onAnimationEnd = onAnimationEnd;
+    }
+
+    start(time=1)
+    {
+        this.animation.animate(time, (len, blur) => {
+            let [x0, y0] = this.P0;
+            // Shapes.clear();
+            Shapes.drawBoard(this.board);
+            Shapes.drawLine(
+                this.P0, 
+                [x0 + this.unitX * len, y0 + this.unitY * len], 
+                blur, this.color, this.stroke_color);
+        })
+    }
+
+};
