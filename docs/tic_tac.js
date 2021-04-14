@@ -132,7 +132,7 @@ class TicTacToe
             }
             
             this.cross_sound.play();
-            anim.animate(0.1,  (len, blur) => {
+            anim.animate(0.4,  (len, blur) => {
                 Shapes.clear();
                 Shapes.drawBoard(this.board);
 
@@ -160,7 +160,7 @@ class TicTacToe
             }
 
             this.circle_sound.play();
-            anim.animate(0.1,  (len, blur) => {
+            anim.animate(0.4,  (len, blur) => {
                 Shapes.clear();
                 Shapes.drawBoard(this.board);
                 Shapes.drawCircles([[pos[1], pos[2]]], 5, pos[0] - Shapes.delta, "rgb(217, 48, 48)", blur, len);
