@@ -13,6 +13,15 @@ class TicTacToe
         this.score0 = document.getElementById("player0");
         this.score1 = document.getElementById("player1");
         this.scores = [0, 0];
+    
+        this.time_interval = 0;
+        if (window.chrome)
+        {
+            this.time_interval = 0.25;
+        }
+        else {
+            this.time_interval = 0.1;
+        }
     }
 
     reset_boards()
@@ -132,7 +141,7 @@ class TicTacToe
             }
             
             this.cross_sound.play();
-            anim.animate(0.1,  (len, blur) => {
+            anim.animate(this.time_interval,  (len, blur) => {
                 Shapes.clear();
                 Shapes.drawBoard(this.board);
 
@@ -160,7 +169,7 @@ class TicTacToe
             }
 
             this.circle_sound.play();
-            anim.animate(0.1,  (len, blur) => {
+            anim.animate(this.time_interval,  (len, blur) => {
                 Shapes.clear();
                 Shapes.drawBoard(this.board);
                 Shapes.drawCircles([[pos[1], pos[2]]], 5, pos[0] - Shapes.delta, "rgb(217, 48, 48)", blur, len);

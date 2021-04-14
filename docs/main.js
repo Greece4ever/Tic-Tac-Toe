@@ -89,13 +89,3 @@ Shapes.drawBoard(game.board);
 let x = AI.x;
 let o = AI.o;
 
-let board = [
-    [x, o, x],
-    [50, 50, 50],
-    [50, 50, o]
-]
-
-
-console.log(ai.choose_move(board, x));
-ai.move(board, x);
-
