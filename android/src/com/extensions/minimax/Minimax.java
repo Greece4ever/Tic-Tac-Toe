@@ -89,7 +89,7 @@ public class Minimax extends AndroidNonvisibleComponent {
     @SimpleFunction(description="")
     public int getRandom() 
     {
-        double __random =  ();
+        double __random =  Math.random();
         return __random > 0.5 ? 1 : 0;
     }
 

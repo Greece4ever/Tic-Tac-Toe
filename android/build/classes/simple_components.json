@@ -2,7 +2,7 @@
   "name": "Minimax",
   "external": "true",
   "version": "1",
-  "dateBuilt": "2021-04-14T18:24:34+0300",
+  "dateBuilt": "2021-04-14T23:22:00+0300",
   "categoryString": "EXTENSION",
   "helpString": "Implementation of (a modified version of) the Minimax algorithm",
   "helpUrl": "",
