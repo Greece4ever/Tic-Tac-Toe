@@ -1,3 +1,7 @@
+let oponent;
+let PLAYER;
+let game ={}
+
 function inside(x, y, mouseX, mouseY)
 {
     let unit = canvas.width / 3;
@@ -23,7 +27,9 @@ canvas.addEventListener("click", (e) => {
         {
             if (inside(x, y, mouseX, mouseY))
             {
-                game.move(x, y);
+                let turn = game.turn == "x" ? AI.x : AI.o; 
+                if (turn == PLAYER)
+                    game.move(x, y);
             }    
         }
     }

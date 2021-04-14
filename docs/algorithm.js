@@ -91,29 +91,9 @@ function copy(arr) {
     return a;
 }
 
-function printboard(board) {
-    let big_str = "";
-    for (let y=0; y < 3; y++)
-    {
-        let str = ""
-        for (let x=0; x < 3; x++)
-        {
-            if (board[y][x] == 1)
-                str += "|o";
-            else if (board[y][x] == 0)
-                str += "|x"
-            else
-                str += "| "
-            if (x == 2)
-                str += "|";   
-        }
-        big_str += str + "\n"
-    }
-    console.log(big_str);
-}
 
 AI.max_reward = 10000
-Math.f
+
 
 let factorials = [
     1,
@@ -131,7 +111,7 @@ let factorials = [
 let c = 0;
 
 
-AI.prototype.minimax = function (board, turn, you, parent_node, depth, empty_spots) 
+AI.prototype.minimax = function (board, turn, you, parent_node, depth) 
 {
     for (let y=0; y < 3; y++)
     {
@@ -159,32 +139,15 @@ AI.prototype.minimax = function (board, turn, you, parent_node, depth, empty_spo
                     return;
             }
 
-            this.minimax(b_copy, !turn, you, parent_node, depth + 1, empty_spots - 1);
+            this.minimax(b_copy, !turn, you, parent_node, depth + 1);
         }
     }
-}
-
-AI.prototype.getEmptySpots = function(board__) 
-{
-    let empty = 0;
-    for (let y=0; y < 3; y++)
-    {
-        for (let x=0; x < 3; x++)
-        {
-            if (board__[y][x] != 50)
-                continue;
-            empty++;
-        }
-    }
-    return empty;
 }
 
 AI.prototype.choose_move = function(game_board, you) 
 {
     let count = 0;
     this.parent_node_scores = [];
-
-    let empty = this.getEmptySpots(game_board);
 
     for (let y=0; y < 3; y++)
     {
@@ -203,20 +166,18 @@ AI.prototype.choose_move = function(game_board, you)
             switch (winner)
             {
                 case you:   // instant win
-                    console.log("instant win");
                     this.parent_node_scores[count].score += 3628800;
                     count++;
                     continue;
                 case null:
                     break;
                 default: // instant lose
-                    console.log("instant lose")
                     this.parent_node_scores[count].score -= 3628800;
                     count++;
                     continue;
             }
 
-            ai.minimax(copy_board, !you, you, count, 1, empty);
+            ai.minimax(copy_board, !you, you, count, 1);
             count++;
         }
     }        
@@ -239,8 +200,7 @@ AI.prototype.move = function (board, you) {
         }
     }
 
-    console.log(scores, max);
-
+    console.log("max is", max, index);
     return scores[index];
 }
 

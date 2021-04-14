@@ -1,8 +1,0 @@
-canvas {
-    background: rgb(4,5,5);
-    background: radial-gradient(circle, rgba(4,5,5,1) 6%, rgba(20,22,66,1) 53%, rgba(4,5,5,0.8533614129245448) 99%); 
-    -webkit-box-shadow:0 0 50px blue; 
-    -moz-box-shadow: 0 0 50px blue; 
-    box-shadow:0 0 50px blue;
-    /* border: 2px dashed blue; */
-}
