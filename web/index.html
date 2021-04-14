@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <audio id="circle_sound" src="./circle.wav"> </audio>
+    <audio id="cross_sound" src="./cross.wav"></audio>
+    <div>
+        <div class="img_parent">
+            <div style="position: relative;" class="img_step_parent">
+                <img>
+                <label id="player0">0</label>
+            </div>
+            <div class="img_step_parent">
+                <img>
+                <label id="player1">0</label>
+            </div>
+        </div>
+        <canvas id="canvas" width="400"  height="400"></canvas>
+    </div>
+</body>
+</html>
+<script src="./listeners.js" defer></script>
+<script src="./shapes.js" defer></script>
+<script src="./tic_tac.js" defer></script>
+<script src="./algorithm.js"></script>
+<script src="./main.js" defer></script>
+<script src="./multiplayer.js"></script>

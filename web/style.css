@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+    background: rgb(4,5,5);
+    background: radial-gradient(circle, rgba(4,5,5,1) 6%, rgb(14, 16, 59) 53%, rgba(4,5,5,0.8533614129245448) 99%); 
+}
+
+canvas {
+    background: rgb(4,5,5);
+    background: radial-gradient(circle, rgba(4,5,5,1) 6%, rgba(20,22,66,1) 53%, rgba(4,5,5,0.8533614129245448) 99%); 
+    -webkit-box-shadow:0 0 50px blue; 
+    -moz-box-shadow: 0 0 50px blue; 
+    box-shadow:0 0 50px blue;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);    
+    /* border: 2px dashed blue; */
+}
+
+.canvas_kid {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 50%);    
+}
+
+
+img {
+    width: 100%;
+    height: auto;
+    max-width: 64px;
+    user-select: none;
+    pointer-events: none;
+} 
+
+.img_parent {
+    position: relative;
+    justify-content: space-around;
+    display: flex;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.img_step_parent {
+    display: grid;
+    
+    align-items: center;
+    text-align: center;
+}
+
+label {
+    color: #fff;
+    -webkit-box-shadow:0 0 50px rgb(14, 16, 59); 
+    -moz-box-shadow: 0 0 50px rgb(14, 16, 59); 
+    box-shadow:0 0 50px rgb(14, 16, 59);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 20;
+}
+
+
+.centered {
+    /* position: absolute; */
+    color: #fff;
+    vertical-align:middle;
+    font-size: 20;
+    top: 50%;
+    transform: translateY(-50%, 0);    
+}

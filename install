@@ -1,0 +1,23 @@
+function red() {
+    printf "\033[0;31m$1\033[0m\n"
+}
+
+red "Running apt update"
+sudo apt update
+red "Installing JVM and Java Compiler"
+# Java
+sudo apt install default-jre
+sudo apt install default-jdk
+sudo apt-get install ant
+red "Installing cURL and unzip"
+# cURL
+sudo apt-get install curl
+sudo apt-get install unzip
+
+red "Fetching app inventor libs"
+curl --output libs.zip -get -L https://github.com/Greece4ever/Tic-Tac-Toe/releases/download/0.0.1/libs.zip &&
+unzip ./libs.zip &&
+mv ./libs/* ./android/lib && rm -rf ./libs ./libs.zip
+cd android &&
+red "Starting extension build"
+ant extensions
