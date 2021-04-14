@@ -1,0 +1,88 @@
+[{
+ "categoryString": "EXTENSION",
+ "dateBuilt": "2021-04-14T18:24:34+0300",
+ "nonVisible": "true",
+ "iconName": "",
+ "methods": [
+  {
+   "deprecated": "false",
+   "name": "MiniMax",
+   "description": "Method for MiniMax",
+   "params": [
+    {
+     "name": "you",
+     "type": "number"
+    },
+    {
+     "name": "_00",
+     "type": "number"
+    },
+    {
+     "name": "_01",
+     "type": "number"
+    },
+    {
+     "name": "_02",
+     "type": "number"
+    },
+    {
+     "name": "_10",
+     "type": "number"
+    },
+    {
+     "name": "_11",
+     "type": "number"
+    },
+    {
+     "name": "_12",
+     "type": "number"
+    },
+    {
+     "name": "_20",
+     "type": "number"
+    },
+    {
+     "name": "_21",
+     "type": "number"
+    },
+    {
+     "name": "_22",
+     "type": "number"
+    }
+   ]
+  },
+  {
+   "deprecated": "false",
+   "name": "getRandom",
+   "description": "Method for getRandom",
+   "params": [],
+   "returnType": "number"
+  }
+ ],
+ "blockProperties": [
+  {
+   "rw": "read-only",
+   "deprecated": "false",
+   "name": "BestMoveX",
+   "description": "Optimal Move in X",
+   "type": "number"
+  },
+  {
+   "rw": "read-only",
+   "deprecated": "false",
+   "name": "BestMoveY",
+   "description": "Optimal Move in Y",
+   "type": "number"
+  }
+ ],
+ "helpUrl": "",
+ "type": "com.extensions.minimax.Minimax",
+ "androidMinSdk": 7,
+ "version": "1",
+ "external": "true",
+ "showOnPalette": "true",
+ "name": "Minimax",
+ "helpString": "Implementation of (a modified version of) the Minimax algorithm",
+ "properties": [],
+ "events": []
+}]
