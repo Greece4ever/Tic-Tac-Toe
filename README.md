@@ -2,7 +2,7 @@
 
 ![Board](https://i.imgur.com/TKpbXgr.png)
 
-Unbeatable tic tac toe AI, using an algorithm similar to minimax , in vanilla JavaScript as a [webpage]( greece4ever.github.io/tic-tac-toe/ ) and as an [android `.apk`](https://github.com/Greece4ever/Tic-Tac-Toe/releases/tag/0.0.1) using App Inventor and Java (with app inventor extensions).
+Unbeatable tic tac toe AI, using an algorithm similar to minimax , in vanilla JavaScript as a [webpage]( https://greece4ever.github.io/Tic-Tac-Toe/ ) and as an [android `.apk`](https://github.com/Greece4ever/Tic-Tac-Toe/releases/tag/0.0.1) using App Inventor and Java (with app inventor extensions).
 
 ![Android Board](https://i.imgur.com/w1R19kb.png)
 
